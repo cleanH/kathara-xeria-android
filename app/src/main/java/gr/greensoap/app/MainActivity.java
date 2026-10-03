@@ -76,7 +76,13 @@ public class MainActivity extends Activity {
         s.setJavaScriptCanOpenWindowsAutomatically(true);
         s.setSupportMultipleWindows(false);
         s.setCacheMode(WebSettings.LOAD_DEFAULT);
-        s.setUserAgentString(s.getUserAgentString() + " KatharaXeriaApp/1.0");
+        String ver = "1.0";
+        try {
+            ver = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+        } catch (Exception e) {
+            // κρατάμε το 1.0
+        }
+        s.setUserAgentString(s.getUserAgentString() + " KatharaXeriaApp/" + ver);
 
         CookieManager cm = CookieManager.getInstance();
         cm.setAcceptCookie(true);
